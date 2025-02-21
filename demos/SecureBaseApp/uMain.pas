@@ -44,28 +44,6 @@ implementation
 
 {$R *.dfm}
 
-function ComputeHash(const S: string; Key: Integer): string;
-var
-  Keccak: TKeccak;
-  Input, Hash: TBytes;
-  I: Integer;
-  HexStr: string;
-begin
-  Keccak := TKeccak.Create;
-  try
-    Input := TEncoding.UTF8.GetBytes(S);
-    Hash := Keccak.Hash(Input, Key);
-    HexStr := '';
-    for I := 0 to Length(Hash) - 1 do
-    begin
-      HexStr := HexStr + IntToHex(Hash[I], 2);
-    end;
-    Result := LowerCase(HexStr);
-  finally
-    Keccak.Free;
-  end;
-end;
-
 procedure TForm1.btnEncodeClick(Sender: TObject);
 var
   sb: TSecureBase;
