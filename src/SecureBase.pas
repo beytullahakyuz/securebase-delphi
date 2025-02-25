@@ -1,5 +1,5 @@
 {
-  version:  v1.0
+  version:  v1.1
   author:   beytullahakyuz
   github:   https://github.com/beytullahakyuz/securebase-delphi
 }
@@ -194,7 +194,6 @@ begin
 
     if Input <> '' then
     begin
-      // Base64 deðerlerini hazýrla
       FillChar(Base64Values, SizeOf(Base64Values), 0);
       for I := 0 to 63 do
         Base64Values[Ord(BaseArray[I])] := I;
@@ -243,7 +242,7 @@ begin
     Result := DecodedData;
   except
     on E: Exception do
-      raise Exception.Create(E.Message);
+      raise Exception.Create('Invalid data or secret key!');
   end;
 end;
 
